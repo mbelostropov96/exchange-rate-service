@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+    php:
+        restart: always
+        tty: true
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        volumes:
+            - ./:/var/www/exchange-rate-service
+        depends_on:
+            - db
+
+    nginx:
+        restart: always
+        build:
+            context: .
+            dockerfile: docker/nginx/Dockerfile
+        ports:
+            - "8080:80"
+        volumes:
+            - ./:/var/www/exchange-rate-service
+        depends_on:
+            - php
+
+    db:
+        restart: always
+        tty: true
+        image: mysql:8
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: exchange-rate-service
