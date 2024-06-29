@@ -34,14 +34,14 @@ class Handler extends ExceptionHandler
             return new ApiErrorResponse(
                 ResponseStatusEnum::ERROR->value,
                 Response::HTTP_INTERNAL_SERVER_ERROR,
-                'loh'
+                'Something went wrong'
             );
         }
 
         return new ApiErrorResponse(
             ResponseStatusEnum::ERROR->value,
             empty($e->getCode()) ? Response::HTTP_BAD_REQUEST : $e->getCode(),
-            $e->getMessage() . $e->getTraceAsString()
+            $e->getMessage()
         );
     }
 
