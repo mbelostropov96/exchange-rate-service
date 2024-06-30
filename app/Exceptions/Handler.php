@@ -6,8 +6,18 @@ namespace App\Exceptions;
 
 use App\Enums\ResponseStatusEnum;
 use App\Http\Responses\ApiErrorResponse;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\MultipleRecordsFoundException;
+use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Routing\Exceptions\BackedEnumCaseNotFoundException;
+use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -21,6 +31,24 @@ class Handler extends ExceptionHandler
         'current_password',
         'password',
         'password_confirmation',
+    ];
+
+    /**
+     * A list of the internal exception types that should not be reported.
+     *
+     * @var array<int, class-string<Throwable>>
+     */
+    protected $internalDontReport = [
+        AuthenticationException::class,
+        AuthorizationException::class,
+        BackedEnumCaseNotFoundException::class,
+        HttpException::class,
+        HttpResponseException::class,
+        ModelNotFoundException::class,
+        MultipleRecordsFoundException::class,
+        RecordsNotFoundException::class,
+        SuspiciousOperationException::class,
+        TokenMismatchException::class,
     ];
 
     /**
