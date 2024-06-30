@@ -14,6 +14,12 @@ docker-compose up -d
 ```
 
 ## При первом запуске:
+### Скопировать конфигурационный файл
+```shell script
+cp .env.example .env
+```
+
+В файле указать данные для подключения к бд
 ### выполнить миграцию
 ```shell script
 php artisan migrate --seed
@@ -21,12 +27,6 @@ php artisan migrate --seed
 Будет создан пользователь с входными данными
 - email: admin@admin.com
 - password: 111
-
-### Скопировать конфигурационный файл
-```shell script
-cp .env.example .env
-```
-В файле указать данные для подключения к бд
 
 ### Зайти в контейнер
 ```shell script
