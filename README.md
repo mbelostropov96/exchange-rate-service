@@ -10,7 +10,7 @@ cd exchange-rate-service
 ### Собрать и поднять контейнеры
 ```shell script
 docker-compose build
-docker-compose ud -d
+docker-compose up -d
 ```
 
 ## При первом запуске:
