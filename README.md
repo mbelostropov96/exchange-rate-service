@@ -81,3 +81,6 @@ POST: http://localhost:8080/api/v1?method=convert (or /api/v1/currency/convert)
     "value": <value_from>
 }
 ```
+
+## Задание 1
+Решение находится в файле [task_1.sql](task_1.sql)
